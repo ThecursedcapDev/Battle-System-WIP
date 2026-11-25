@@ -1,0 +1,127 @@
+--!strict
+export type Pathfinder = {
+	["_character"]: Model,
+	["_target"]: Vector3 | BasePart | Model,
+	["_movingTarget"]: boolean,
+	["_abilityLastActivated"]: number,
+	["_movingTargetTrackingRange"]: number?,
+	["_movingTargetRetargetingRange"]: number?,
+	["_pathfinderAbilities"]: PathfinderAbilities?,
+	["_running"]: boolean,
+	["_path"]: Path,
+	["_pathDone"]: boolean,
+	["_waypoints"]: { [number]: PathWaypoint },
+	["_currentWaypoint"]: number,
+	["_currentAbilityIndex"]: number,
+	["_rp"]: RaycastParams,
+	["_lastPathTick"]: number?,
+	["_debugMode"]: boolean?,
+	["_debugWaypoint"]: boolean?,
+	["_randomMove"]: boolean?,
+	["_activateAbilitiesInSequence"]: boolean?,
+	["_connections"]: { [number]: RBXScriptConnection },
+	["_memory"]: { [any]: any },
+	["_abilityCooldowns"]: { [string | number]: number },
+	["_noPathAction"]: ((t) -> ())?,
+	["_moveFunction"]: ((Vector3) -> ())?,
+	["_jumpFunction"]: ((Vector3) -> boolean)?,
+	["_randomMoveFunction"]: (() -> Vector3)?,
+	["_pathCompletedEvent"]: BindableEvent,
+	["_waypointReachedEvent"]: BindableEvent,
+	["_pathBlockedEvent"]: BindableEvent,
+	["_moveEvent"]: BindableEvent,
+	["_idleEvent"]: BindableEvent,
+	["_pathCount"]: number,
+	["_startTime"]: number,
+	["_debugLevel"]: number,
+	["_characterState"]: CharacterState,
+	["OnPathCompleted"]: RBXScriptSignal,
+	["OnPathBlocked"]: RBXScriptSignal,
+	["OnWaypointReached"]: RBXScriptSignal,
+	["OnIdle"]: RBXScriptSignal,
+	["OnMove"]: RBXScriptSignal,
+
+	["ChangeTarget"]: (self: any, newTarget: Vector3 | BasePart | Model | Attachment) -> (),
+	["Run"]: (self: any) -> (),
+	["Stop"]: (self: any) -> (),
+	["Destroy"]: (self: any) -> (),
+	["GetState"]: (self: any) -> CharacterState,
+
+	["_MoveTo"]: (self: any, p: Vector3) -> (),
+	["_Jump"]: (self: any, p: Vector3) -> boolean,
+	["_RandomMove"]: (self: any) -> (),
+	["_OnWaypointReached"]: (self: any) -> (),
+	["_MoveInPath"]: (self: any, to: Vector3) -> (),
+	["_OnPathBlocked"]: (self: any, blockedWaypointIndex: number) -> (),
+	["_InitPathfinding"]: (self: any) -> (),
+	["_PathOperations"]: (self: any, target: (Vector3 | BasePart | Model)?) -> (),
+	["_InsertDebugWaypoint"]: (
+		self: any,
+		pos: Vector3,
+		num: number,
+		color: Color3?,
+		action: Enum.PathWaypointAction?
+	) -> (),
+	["_GetXZDirection"]: (self: any, pos1: Vector3, pos2: Vector3) -> Vector3,
+	["_GetSurfaceAngle"]: (self: any) -> number,
+	["_GetTargetPosition"]: (self: any) -> Vector3,
+	["_GetCharacterPosition"]: (self: any) -> Vector3,
+	["_OnPositionChanged"]: (self: any) -> (),
+	["_CheckIfAbilityCanBeActivated"]: (self: any, dist: number, n: number) -> boolean,
+	["_CheckAndRunAbility"]: (self: any, dist: number, n: number) -> boolean,
+	["_DebugPrint"]: (self: any, debugLevel: number?, ...any) -> (),
+	["Roll"]: (self: any, n: number, randomTable: { [number]: { [string]: number } }) -> number,
+	["_DefaultT"]: (self: any) -> t,
+}
+
+export type CharacterState = "Move" | "Idle"
+
+export type PathfinderAbilities = {
+	[number]: {
+		["ActivationRange"]: number,
+		["ActiveTime"]: number,
+		["CooldownTime"]: number,
+		["Weight"]: number?,
+		["CustomConditions"]: ((t) -> boolean)?,
+		["Callback"]: (t) -> (),
+	},
+}
+
+export type AgentParameters = {
+	["AgentRadius"]: number?,
+	["AgentHeight"]: number?,
+	["AgentCanJump"]: boolean?,
+	["AgentCanClimb"]: boolean?,
+	["WaypointSpacing"]: number?,
+	["Costs"]: { [string]: number }?,
+	["PathSettings"]: { [string]: any }?,
+}
+
+export type PathfinderConfiguration = {
+	["Target"]: Vector3 | BasePart | Model,
+	["MovingTargetTrackingRange"]: number?,
+	["MovingTargetRetargetingRange"]: number?,
+	["DebugMode"]: boolean?,
+	["DebugLevel"]: number?,
+	["DebugWaypoint"]: boolean?,
+	["MovingTarget"]: boolean?,
+	["RandomMove"]: boolean?,
+	["ActivateAbilitiesInSequence"]: boolean?,
+	["MoveFunction"]: ((Vector3) -> ())?,
+	["JumpFunction"]: ((Vector3) -> boolean)?,
+	["RandomMoveFunction"]: (() -> Vector3)?,
+	["NoPathAction"]: ((t) -> ())?,
+	["AgentParameters"]: AgentParameters?,
+	["AbilitiesTable"]: PathfinderAbilities?,
+}
+
+export type t = {
+	["Character"]: Model,
+	["Target"]: Vector3 | BasePart | Model,
+	["Distance"]: number,
+	["Move"]: (Vector3) -> (),
+	["RandomMove"]: () -> (),
+	["DebugPrint"]: (...any) -> (),
+}
+
+return {}

@@ -1,0 +1,11 @@
+{
+  "name": "display",
+	"tree": {
+		"$className": "DataModel",
+		"ReplicatedStorage": {
+			"package": {
+				"$path": "model.project.json"
+			}
+		}
+	}
+}

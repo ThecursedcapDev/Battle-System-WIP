@@ -1,0 +1,6 @@
+{
+  "luau-lsp.sourcemap.enabled": true,
+  "luau-lsp.sourcemap.autogenerate": true,
+  "luau-lsp.sourcemap.rojoPath": "C:/Users/Davir/.rokit/bin/rojo.exe",
+  "luau-lsp.sourcemap.rojoProjectFile": "default.project.json"
+}
